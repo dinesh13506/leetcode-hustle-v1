@@ -33,6 +33,6 @@ class Solution {
         for(long sum : sums) {
             ans = Math.max(ans, (total - sum) * sum);
         }
-        return (int) (ans % 1000000007);
+        return (int) (ans % mod);
     }
 }
