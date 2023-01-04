@@ -1,16 +1,21 @@
 class Solution {
+    Stack<int [] > stack;
+    
+    public void addToStack(int task, int count) {
+        int[] arr = new int[2];
+        arr[0] = task;
+        arr[1] = 1;
+        stack.push(arr);
+    }
     public int minimumRounds(int[] tasks) {
         int ans = 0;
-        Stack<int [] > stack = new Stack<>();
+        stack = new Stack<>();
         Arrays.sort(tasks);
         int n = tasks.length;
         
         for(int i = 0; i < n; i++) {
             if(stack.isEmpty()) {
-                int[] arr = new int[2];
-                arr[0] = tasks[i];
-                arr[1] = 1;
-                stack.push(arr);
+                addToStack(tasks[i], 1);
                 continue;
             } else {
                 int[] top = stack.peek();
@@ -18,16 +23,10 @@ class Solution {
                     if(top[1] < 3) {
                         top[1]++;
                     } else {
-                        int[] arr = new int[2];
-                        arr[0] = tasks[i];
-                        arr[1] = 1;
-                        stack.push(arr);
+                        addToStack(tasks[i], 1);
                     }
                 } else {
-                    int[] arr = new int[2];
-                    arr[0] = tasks[i];
-                    arr[1] = 1;
-                    stack.push(arr);
+                    addToStack(tasks[i], 1);
                 }
             }
         }
