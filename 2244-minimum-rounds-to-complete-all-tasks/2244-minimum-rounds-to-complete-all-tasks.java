@@ -4,7 +4,7 @@ class Solution {
     public void addToStack(int task, int count) {
         int[] arr = new int[2];
         arr[0] = task;
-        arr[1] = 1;
+        arr[1] = count;
         stack.push(arr);
     }
     public int minimumRounds(int[] tasks) {
@@ -30,11 +30,8 @@ class Solution {
                 }
             }
         }
-        
-        //System.out.println(stack.size());
         while(stack.isEmpty() == false) {
             int[] top = stack.pop();
-            //System.out.println(top[0] + " " + top[1]);
             if(top[1] == 2 || top[1] == 3) {
                 ans++;
             } else {
@@ -50,7 +47,6 @@ class Solution {
             }
             
         }
-        
         return ans;
     }
 }
