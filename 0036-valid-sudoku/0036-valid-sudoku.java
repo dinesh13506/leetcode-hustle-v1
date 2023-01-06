@@ -1,17 +1,6 @@
 class Solution {
-    public boolean isValidSudoku(char[][] board) {
-        final int m = board.length, n = board[0].length;
-        int[][] startPoints = new int[9][2];
-        startPoints[0] = new int[]{0,0};
-        startPoints[1] = new int[]{0,3};
-        startPoints[2] = new int[]{0,6};
-        startPoints[3] = new int[]{3,0};
-        startPoints[4] = new int[]{3,3};
-        startPoints[5] = new int[]{3,6};
-        startPoints[6] = new int[]{6,0};
-        startPoints[7] = new int[]{6,3};
-        startPoints[8] = new int[]{6,6};
-        
+    
+    public boolean check(int m, int n, char[][] board) {
         //check rows
         for(int r = 0; r < m; r++) {
             HashSet<Character> set = new HashSet<>();
@@ -24,6 +13,21 @@ class Solution {
                 }
             }
         }
+        return true;
+    }
+    public boolean isValidSudoku(char[][] board) {
+        final int m = board.length, n = board[0].length;
+        int[][] startPoints = new int[9][2];
+        int p = 0;
+        for(int i = 0; i < 9; i = i + 3) {
+            for(int j = 0; j < 9; j = j + 3) {
+                startPoints[p] = new int[]{i,j};
+                p++;
+            }
+        }
+
+        if( (check(m,n, board) && check(n, m, board)) == false) return false;
+
 
         //check cols
         for(int c = 0; c < n; c++) {
@@ -37,8 +41,7 @@ class Solution {
                 }
             }
         }
-        
-        
+
         for(int[] point : startPoints) {
             int x = point[0], y = point[1];
             HashSet<Character> set = new HashSet<>();
