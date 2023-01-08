@@ -19,6 +19,9 @@ class Solution {
                 while(p1 < p2 && nums[p1-1] == nums[p1]) {
                     p1++;
                 }
+                while(p1 < p2 && nums[p2+1] == nums[p2]) {
+                    p2--;
+                }
             }
         }
     }
