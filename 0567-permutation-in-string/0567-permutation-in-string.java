@@ -19,17 +19,9 @@ class Solution {
         
         for(int i = 0; i < n2; i++) {
             char ch = s2.charAt(i);
-            if(i < n1) {
-                count2[ch - 'a']++;
-            }
-            else {
-                if(check(count1, count2)) return true;
-                count2[ch - 'a']++;
-                count2[s2.charAt(i-n1) - 'a']--;
-            }
-            if(i == n2 - 1) {
-                if(check(count1, count2)) return true;
-            }
+            count2[ch - 'a']++;
+            if(i >= n1 ) count2[s2.charAt(i-n1) - 'a']--;
+            if(check(count1, count2)) return true;
         }
         return false;
         
