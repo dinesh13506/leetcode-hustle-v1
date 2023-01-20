@@ -1,31 +1,36 @@
 class Solution {
-    private void backtrack(int[] nums, int index, List<Integer> sequence,
-            Set<List<Integer>> result) {
-        // if we have checked all elements
-        if (index == nums.length) {
-            if (sequence.size() >= 2) {
-                result.add(new ArrayList<>(sequence));
+    Set<List<Integer>> set;
+    public boolean isIncreasingSeq(List<Integer> list, int currElement) {
+        if(list.size() == 0) return true;
+        int lastElement = list.get(list.size() - 1);
+        return currElement >= lastElement;
+    }
+    
+    public void generate(int i, int[] nums, List<Integer> list) {
+        if(i >= nums.length) {
+            if(list.size() >= 2) {
+                set.add(new ArrayList<>(list));
             }
             return;
         }
-        // if the sequence remains increasing after appending nums[index]
-        if (sequence.isEmpty() ||
-                sequence.get(sequence.size() - 1) <= nums[index]) {
-            // append nums[index] to the sequence
-            sequence.add(nums[index]);
-            // call recursively
-            backtrack(nums, index + 1, sequence, result);
-            // delete nums[index] from the end of the sequence
-            sequence.remove(sequence.size() - 1);
+        int currElement = nums[i];
+        if(isIncreasingSeq(list, currElement)) {
+            //take it
+            list.add(currElement);
+            generate(i+1, nums, list);
+            
+            //not take it
+            list.remove(list.size() - 1); //remove added first
+            generate(i+1, nums, list);
+        } else {
+             generate(i+1, nums, list);
         }
-        // call recursively not appending an element
-        backtrack(nums, index + 1, sequence, result);
+       
     }
-
     public List<List<Integer>> findSubsequences(int[] nums) {
-        Set<List<Integer>> result = new HashSet<List<Integer>>();
-        List<Integer> sequence = new ArrayList<Integer>();
-        backtrack(nums, 0, sequence, result);
-        return new ArrayList(result);
+        set = new HashSet<List<Integer>>();
+        generate(0, nums, new ArrayList<Integer>());
+        List<List<Integer>> ans = new ArrayList<>(set);
+        return ans;
     }
 }
