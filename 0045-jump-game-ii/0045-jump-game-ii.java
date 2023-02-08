@@ -1,12 +1,12 @@
 class Solution {
     int n;
-    HashMap<Integer, Integer> map;
+    int[] count;
     public int dp(int i, int[] nums) {
         if(i == n-1) {
             return 0;
         }
-        if(map.containsKey(i)) {
-            return map.get(i);
+        if(count[i] != -1) {
+            return count[i];
         }
         int ans = Integer.MAX_VALUE;
         for(int j = 1; j <= nums[i]; j++) {
@@ -15,13 +15,14 @@ class Solution {
                 ans = Math.min(ans, 1 + jumps);
             } 
         }
-        map.put(i, ans);
+        count[i] = ans;
         return ans;
     }
     
     public int jump(int[] nums) {
-        map = new HashMap<>();
         n = nums.length;
+        count = new int[n];
+        Arrays.fill(count, -1);
         return dp(0, nums);
     }
 }
