@@ -7,12 +7,13 @@
  */
 var countGoodStrings = function(low, high, zero, one) {
     
-    let map = new Map();
+    let arr = new Array(high + 1);
+    arr.fill(null);
     let mod = 1000000007;
     let dp = (len) => {
        if(len < 0) return 0;
        if(len == 0) return 1;
-        if(map.has(len)) return map.get(len);
+        if(arr[len] != null) return arr[len];
         let withzero = 0;
         if(len - zero >= 0) {
             withzero = dp(len - zero);
@@ -21,8 +22,8 @@ var countGoodStrings = function(low, high, zero, one) {
         if(len - one >= 0) {
             withone = dp(len - one);
         }
-        map.set(len, (withzero + withone) % mod);
-        return map.get(len);
+        arr[len] =  ((withzero + withone) % mod);
+        return  arr[len];
      }
     
      let ans = 0;
