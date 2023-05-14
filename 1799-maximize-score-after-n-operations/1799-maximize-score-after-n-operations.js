@@ -5,9 +5,8 @@
 var maxScore = function(nums) {
     
     let n = nums.length;
-    let size = 1 << n;
-    let memo = new Array(size);
-    memo.fill(-1);
+    let memo = new Map();
+    let visited = new Array(n).fill(0);
     
     
     let gcd = (a, b) => {
@@ -15,32 +14,34 @@ var maxScore = function(nums) {
         return gcd(b, a % b);
     }
     
-    let dp = (mask, pairs) => {
+    let dp = (pairs) => {
         if(2 * pairs == n) return 0;
         
-        if(memo[mask] != -1) return memo[mask];
+        let state = visited.join(',');
+        if(memo.get(state)) return memo.get(state);
         
         let max = 0;
         for(let i = 0; i < n; i++) {
             for(let j = i + 1; j < n; j++) {
                 
                 //check if i is picked
-                if( ((mask >> i) & 1) == 1) continue;
+                if(visited[i] == 1) continue;
                 //check if j is picked
-                if( ((mask >> j) & 1) == 1) continue;
+                if( visited[j] == 1) continue;
                 
-                let newmask = mask |  (1 << i) | (1 << j);
-                
+                visited[i] = 1;
+                visited[j] = 1;
                 let curr = (pairs + 1) * gcd(nums[i], nums[j]);
-                let remain = dp(newmask , pairs + 1);
-                
+                let remain = dp(pairs + 1);
                 max = Math.max(max, curr + remain);
+                visited[i] = 0;
+                visited[j] = 0;
                 
             }
         }
-        memo[mask] = max;
-        return memo[mask];
+        memo.set(state, max);
+        return memo.get(state);
     }
     
-    return dp(0, 0);
+    return dp(0);
 };
