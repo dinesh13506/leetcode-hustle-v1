@@ -12,14 +12,10 @@ class KthLargest {
     
     public int add(int val) {
        pq.add(val);
-       List<Integer> al = new ArrayList<>();
        while(pq.size() > kth) {
-           al.add(pq.poll());
+           pq.poll();
        }
        int ans = pq.peek();
-       // for(int i = 0; i < al.size(); i++) {
-       //     pq.add(al.get(i));
-       // }
        return ans;
     }
 }
