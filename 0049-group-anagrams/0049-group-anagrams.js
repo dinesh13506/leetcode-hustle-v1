@@ -7,16 +7,13 @@ var groupAnagrams = function(strs) {
     const map = new Map()
     const n = strs.length
     for(let i = 0 ; i < n; i++) {
-        let count = new Array(26)
-        count.fill(0)
-        for(let ch of strs[i]) {
-            count[ch.charCodeAt() - 'a'.charCodeAt()]++
-        }
-        let key = count.join('*')
+        let key = strs[i].split("").sort().join('');
         if(map.has(key) == false) {
-            map.set(key, [])
+            map.set(key, []);
+            map.get(key).push(strs[i]);
+        } else {
+            map.get(key).push(strs[i]);
         }
-        map.get(key).push(strs[i])
     }
     
     let answer = []
