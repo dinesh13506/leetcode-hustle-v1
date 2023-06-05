@@ -12,14 +12,11 @@ var checkStraightLine = function(coordinates) {
     //console.log(coordinates);
 
     let set = new Set();
-    for(let i = 0; i < n; i++) {
-        for(let j = i + 1; j < n; j++) {
-            
-            let slope = (coordinates[j][1] - coordinates[i][1]) / (coordinates[j][0] - coordinates[i][0]);
+    for(let i = 1; i < n; i++) {
+            let slope = Math.abs(coordinates[i][1] - coordinates[i-1][1]) / Math.abs(coordinates[i][0] - coordinates[i-1][0]);
             //console.log(slope);
             set.add(slope);
             if(set.size > 1) return false;
-        }
     }
     return true;
 };
