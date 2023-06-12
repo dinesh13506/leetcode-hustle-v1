@@ -19,13 +19,16 @@ var summaryRanges = function(nums) {
     }
     //console.log(stack);
     let ans = [];
-    while(stack.length > 0) {
-        let range = stack.pop();
+    let n = stack.length;
+    let i = 0;
+    while(i < n) {
+        let range = stack[i];
         if(range[0] == range[1]) {
             ans.push(`${range[0]}`);
         } else {
             ans.push(`${range[0]}->${range[1]}`);
         }
+        i++;
     }
-    return ans.reverse();
+    return ans;
 };
