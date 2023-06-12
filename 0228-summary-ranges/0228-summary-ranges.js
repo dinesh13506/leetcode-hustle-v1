@@ -4,31 +4,35 @@
  */
 var summaryRanges = function(nums) {
     
-    let stack = [];
+    let ans = [];
+    let start;
+    let end;
     for(let num of nums) {
-        if(stack.length == 0) {
-            stack.push([num, num]);
+        if(start == undefined && end == undefined) {
+           start = num;
+           end = num;
         } else {
-            let end = stack[stack.length - 1][1];
             if(end + 1 == num) {
-                stack[stack.length - 1][1] = num;
+                end = num;
             } else {
-                stack.push([num, num]);
+                if(start == end) {
+                    ans.push(`${start}`);
+                } else {
+                    ans.push(`${start}->${end}`);
+                }
+                start = num;
+                end = num;
             }
         }
     }
-    //console.log(stack);
-    let ans = [];
-    let n = stack.length;
-    let i = 0;
-    while(i < n) {
-        let range = stack[i];
-        if(range[0] == range[1]) {
-            ans.push(`${range[0]}`);
+    if(start != undefined && end != undefined) {
+        if(start == end) {
+            ans.push(`${start}`);
         } else {
-            ans.push(`${range[0]}->${range[1]}`);
-        }
-        i++;
+            ans.push(`${start}->${end}`);
+        } 
     }
+    
     return ans;
+    
 };
