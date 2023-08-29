@@ -4,17 +4,14 @@
  */
 var bestClosingTime = function(customers) {
     
-    let str = customers.split('');
-    const n = str.length;
-    let leftNs = new Array(n+1);
+    const n = customers.length;
     let rightYs = new Array(n+1);
-    
     let count = 0;
     count = 0;
     for(let i = n; i >= 0; i--) {
         rightYs[i] = count;
         if(i < n && i >= 0) {
-            count = str[i] == 'Y' ? count + 1 : count;
+            count = customers.charAt(i) == 'Y' ? count + 1 : count;
         }
     }
     //console.log(rightYs);
@@ -26,14 +23,14 @@ var bestClosingTime = function(customers) {
         p += count;
         p += rightYs[i];
         if(i >= 0 && i < n) {
-            p = str[i] == 'Y' ? p + 1 : p;
+            p = customers.charAt(i) == 'Y' ? p + 1 : p;
         }
         if( p < penality) {
             penality = p;
             ans = i;
         }
         if(i < n) {
-            count = str[i] == 'N' ? count + 1 : count;
+            count = customers.charAt(i) == 'N' ? count + 1 : count;
         }
     }
     return ans;
