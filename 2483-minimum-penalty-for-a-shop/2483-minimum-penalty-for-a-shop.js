@@ -10,12 +10,12 @@ var bestClosingTime = function(customers) {
     let rightYs = new Array(n+1);
     
     let count = 0;
-    for(let i = 0; i <= n ; i++) {
-        leftNs[i] = count;
-        if(i < n) {
-            count = str[i] == 'N' ? count + 1 : count;
-        }
-    }
+    // for(let i = 0; i <= n ; i++) {
+    //     leftNs[i] = count;
+    //     if(i < n) {
+    //         count = str[i] == 'N' ? count + 1 : count;
+    //     }
+    // }
     //console.log(leftNs);
     count = 0;
     for(let i = n; i >= 0; i--) {
@@ -27,9 +27,10 @@ var bestClosingTime = function(customers) {
     //console.log(rightYs);
     let ans = Number.MAX_VALUE;
     let penality = n + 1;
+    count = 0;
     for(let i = 0; i <= n; i++) {
         let p = 0;
-        p = p + leftNs[i];
+        p = p + count;
         p = p + rightYs[i];
         if(i >= 0 && i < n) {
             p = str[i] == 'Y' ? p + 1 : p;
@@ -38,6 +39,9 @@ var bestClosingTime = function(customers) {
         if( p < penality) {
             penality = p;
             ans = i;
+        }
+        if(i < n) {
+            count = str[i] == 'N' ? count + 1 : count;
         }
     }
     return ans;
