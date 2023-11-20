@@ -11,7 +11,6 @@ var garbageCollection = function(garbage, travel) {
         prefixSum[i] = runningSum;
         runningSum += travel[i];
     }
-    console.log(prefixSum);
     let map = new Map();
     let mrange = [null, null];
     let prange = [null, null];
