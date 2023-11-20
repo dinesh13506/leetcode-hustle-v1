@@ -24,7 +24,7 @@ var garbageCollection = function(garbage, travel) {
                     mrange[0] = i;
                     mrange[1] = i;
                 } else {
-                     mrange[0] = Math.min(mrange[0], i);
+                     //mrange[0] = Math.min(mrange[0], i);
                      mrange[1] = Math.max(mrange[1], i);
                 }
             } else if(ch == 'P') {
@@ -32,7 +32,7 @@ var garbageCollection = function(garbage, travel) {
                     prange[0] = i;
                     prange[1] = i;
                 } else {
-                     prange[0] = Math.min(prange[0], i);
+                     //prange[0] = Math.min(prange[0], i);
                      prange[1] = Math.max(prange[1], i);
                 }
             } else if(ch == 'G') {
@@ -40,7 +40,7 @@ var garbageCollection = function(garbage, travel) {
                     grange[0] = i;
                     grange[1] = i;
                 } else {
-                     grange[0] = Math.min(grange[0], i);
+                     //grange[0] = Math.min(grange[0], i);
                      grange[1] = Math.max(grange[1], i);
                 }
             }
