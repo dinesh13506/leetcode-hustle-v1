@@ -24,12 +24,9 @@ var countNicePairs = function(nums) {
             map.set(diff,  1);
         }
     }
-    //console.log(map);
-    
     for(let key of map.keys()) {
         let n = map.get(key);
         pairs = (pairs + (n * (n-1)/ 2)) % mod;
     }
     return pairs;
-    
 };
