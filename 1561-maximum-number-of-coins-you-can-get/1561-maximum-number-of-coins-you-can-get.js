@@ -14,7 +14,7 @@ var maxCoins = function(piles) {
     //console.log(piles);
     let ans = 0;
     while(p1 < n && p2 < n && p3 > p2 && p3 >= 0) {
-        console.log(piles[p2])
+        //console.log(piles[p2])
         ans += piles[p2];
         p1 = p2 + 1;
         p2 = p1 + 1;
