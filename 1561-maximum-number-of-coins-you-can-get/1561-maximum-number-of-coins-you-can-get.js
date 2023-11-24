@@ -4,19 +4,17 @@
  */
 var maxCoins = function(piles) {
     const n = piles.length;
-    let p1 = 0;
-    let p2 = 1;
-    let p3 = n - 1;
+    let p1 = 1;
     let ans = 0;
     piles.sort((a,b) => {
          return b - a;
     });
+    //console.log(piles)
     
-    while(p1 < n && p2 < n && p3 > p2 && p3 >= 0) {
-        ans += piles[p2];
-        p1 = p2 + 1;
-        p2 = p1 + 1;
-        p3--;
+    while(p1 < (2 * n / 3)) {
+        ans += piles[p1];
+        //console.log(piles[p1])
+        p1 += 2;
     }
     return ans;
 };
