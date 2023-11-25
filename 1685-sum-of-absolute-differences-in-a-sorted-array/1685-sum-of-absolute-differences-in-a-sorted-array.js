@@ -6,20 +6,17 @@ var getSumAbsoluteDifferences = function(nums) {
     
     const n = nums.length;
     let ans = [];
-    let ps = [];
+    let prefixSum = [];
     let sum = 0;
     for(let i = 0; i < n; i++) {
         sum = sum + nums[i];
-        ps[i] = sum;
+        prefixSum[i] = sum;
     }
-    //console.log(ps)
     for(let i = 0; i < n; i++) {
-        let left = i;
-        let right =  n - (i + 1);
-        //console.log(left, nums[i], right);
-        let leftsum = (i >= 1) ? (left * nums[i]) - ps[i-1]: 0;
-        let rightsum = (ps[n-1] - ps[i]) - (right * nums[i]);
-        //console.log(leftsum, rightsum);
+        let leftCount = i;
+        let rightCount =  n - (i + 1);
+        let leftsum = (i >= 1) ? (leftCount * nums[i]) - prefixSum[i-1]: 0;
+        let rightsum = (prefixSum[n-1] - prefixSum[i]) - (rightCount * nums[i]);
         ans.push(leftsum + rightsum);
     }
     return ans;
