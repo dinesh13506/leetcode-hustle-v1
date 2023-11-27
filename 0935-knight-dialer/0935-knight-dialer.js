@@ -26,7 +26,7 @@ var knightDialer = function(n) {
     }
     
     let dp = (curr, moves) => {
-        if(moves == 0) {
+        if(moves == n) {
             return 1;
         }
         if(memo[curr][moves]) {
@@ -34,14 +34,14 @@ var knightDialer = function(n) {
         }
         let count = 0;
         for(let nextMove of canGo[curr]) {
-            count = (count + dp(nextMove, moves - 1)) % mod;
+            count = (count + dp(nextMove, moves + 1)) % mod;
         }
         memo[curr][moves] = count;
         return count;
     }
     
     for(let i = 0; i < 10; i++) {
-        ans = (ans + dp(i, n - 1)) % mod;
+        ans = (ans + dp(i, 1)) % mod;
     }
     return ans;
 };
