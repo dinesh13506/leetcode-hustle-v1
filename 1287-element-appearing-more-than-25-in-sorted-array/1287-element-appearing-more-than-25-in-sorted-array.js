@@ -6,25 +6,27 @@ var findSpecialInteger = function(arr) {
     
     const n = arr.length;
     const exp = Math.ceil(0.25 * n);
-    let op = [];
-    let count = 0;
-    let prev = -1
-    for(let i = 0; i < n; i++) {
-        if(arr[i] == prev) {
-            op[op.length-1].count++;
+    let count = 1;
+    let prev = arr[0];
+    let max = 1;
+    let ans = prev;
+    for(let i = 1; i < n; i++) {
+        if(prev == arr[i]) {
+            count++;
+            if(count > max) {
+                 ans = arr[i];
+                 max = count;
+            }
         } else {
-            op.push({
-                count : 1,
-                val : arr[i]
-            });
+            if(count >= max) {
+                ans = prev;
+                max = count;
+            }
+            count = 1;
             prev = arr[i];
         }
+        
     }
-    
-    op.sort((a,b) => { return b.count - a.count});
-    //console.log(op, exp)
-    for(let i = 0; i < op.length; i++) {
-        console.log(op[i].count >= exp)
-        if(op[i].count >= exp) return op[i].val;
-    }
+    //console.log(max, exp, ans)
+    if(max >= exp) return ans;
 };
