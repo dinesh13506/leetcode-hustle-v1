@@ -43,17 +43,4 @@ public class FoodRatings {
     public String highestRated(String cuisine) {
         return cuisineMap.get(cuisine).peek().food;
     }
-
-    public static void main(String[] args) {
-        // Example usage
-        String[] foods = {"Pizza", "Burger", "Sushi"};
-        String[] cuisines = {"Italian", "American", "Japanese"};
-        int[] ratings = {4, 5, 3};
-
-        FoodRatings obj = new FoodRatings(foods, cuisines, ratings);
-        obj.changeRating("Pizza", 5);
-        String highestRatedFood = obj.highestRated("Italian");
-
-        System.out.println("Highest rated Italian food: " + highestRatedFood);
-    }
 }
