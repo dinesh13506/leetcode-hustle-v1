@@ -4,12 +4,12 @@
  */
 var maxProductDifference = function(nums) {
     
-    let largest = nums[0]
-    let secondLargest = -Infinity
-    let smallest = nums[0]
-    let secondSmallest = Infinity
+    let largest = nums[0] > nums[1] ? nums[0] : nums[1];
+    let secondLargest = nums[0] > nums[1] ? nums[1] : nums[0];
+    let smallest = nums[0] > nums[1] ? nums[1] : nums[0];
+    let secondSmallest = nums[0] > nums[1] ? nums[0] : nums[1];
     let length = nums.length
-    for(let i = 1; i < length; i++) {
+    for(let i = 2; i < length; i++) {
         if(nums[i] > largest) {
             secondLargest = largest
             largest = nums[i]
