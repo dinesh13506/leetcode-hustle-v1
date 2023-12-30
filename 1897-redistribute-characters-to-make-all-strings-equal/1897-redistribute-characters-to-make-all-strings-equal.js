@@ -12,7 +12,8 @@ var makeEqual = function(words) {
             count.set(ch, c);
         }
     }
-    for(let ch of count.keys()) {
+    let keys = count.keys(); 
+    for(let ch of keys) {
         if(count.get(ch) % n != 0) {
             return false;
         }
