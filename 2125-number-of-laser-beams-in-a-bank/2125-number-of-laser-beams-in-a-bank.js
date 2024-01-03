@@ -21,16 +21,13 @@ var numberOfBeams = function(bank) {
         }
         prefixSum[i] =  i > 0 ? prefixSum[i-1] + deviceCount : deviceCount;
     }
-    //console.log(securityDevices,prefixSum)
     let ans = 0;
     for(let r1 = 0; r1 < securityDevices.length; r1++) {
         if(securityDevices[r1].length == 0) continue;
         for(let r2 = r1 + 1; r2 < securityDevices.length; r2++) {
             if(securityDevices[r2].length == 0) continue;
-            let flag = true;
             if(r2 - r1 == 1) {
                ans = ans + (securityDevices[r1].length * securityDevices[r2].length);
-               //continue;
                 break;
             }
             else if(prefixSum[r1 + 1] == prefixSum[r2 - 1]) {
