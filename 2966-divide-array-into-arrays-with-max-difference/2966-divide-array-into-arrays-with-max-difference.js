@@ -19,6 +19,7 @@ var divideArray = function(nums, k) {
             ans.push([nums[p], nums[p + 1], nums[p+2]]);
             p = p + 3;
         } else {
+            return [];
             p = p + 1;
         }
     }
