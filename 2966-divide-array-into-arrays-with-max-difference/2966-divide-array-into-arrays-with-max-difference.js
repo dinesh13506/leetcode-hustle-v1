@@ -11,7 +11,7 @@ var divideArray = function(nums, k) {
     let n = nums.length;
     let p = 0;
     let ans = [];
-    while(p < n && p + 1 < n && p + 2 < n) {
+    while(p < n - 2) {
         let d1 = Math.abs(nums[p]- nums[p+1]);
         let d2 = Math.abs(nums[p+1]- nums[p+2]);
         let d3 = Math.abs(nums[p]- nums[p+2]);
