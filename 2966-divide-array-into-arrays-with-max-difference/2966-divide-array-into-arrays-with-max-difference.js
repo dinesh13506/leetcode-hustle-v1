@@ -20,10 +20,7 @@ var divideArray = function(nums, k) {
             p = p + 3;
         } else {
             return [];
-            p = p + 1;
         }
     }
-    //console.log(ans);
-    if(ans.length * 3 == n) return ans;
-    return [];
+    return ans;
 };
