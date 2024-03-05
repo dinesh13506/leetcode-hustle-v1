@@ -19,7 +19,6 @@ var minimumLength = function(s) {
             });
         }
     }
-    //console.log(arr);
     let i = 0, j = arr.length-1;
     let del = 0;
     while(i < j) {
@@ -34,7 +33,6 @@ var minimumLength = function(s) {
             break;
         }
     }
-    //console.log(arr);
     if(i == j ) {
         return arr[i].count > 1 ? 0 : arr[i].count;
     }
