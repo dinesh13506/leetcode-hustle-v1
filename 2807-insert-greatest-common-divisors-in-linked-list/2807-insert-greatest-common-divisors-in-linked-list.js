@@ -10,6 +10,7 @@
  * @return {ListNode}
  */
 var gcd = function(a, b) {
+  console.log(a, b)
   if (!b) {
     return a;
   }
@@ -21,26 +22,19 @@ var insertGreatestCommonDivisors = function(head) {
     let p = head;
     let arr = [];
     while(p) {
-        arr.push(p.val);
+        //arr.push(p.val);
         let next = p.next;
         if(next) {
             let g = gcd(p.val, next ? next.val : 0);
-            arr.push(g);
-            //arr.push(next.val);
-        }
-        p = next;  
-    }
-    //console.log(arr);
-    let ans = null;
-    let tail = null;
-    for(let i = 0; i < arr.length; i++) {
-        if(!ans) {
-            ans = new ListNode(arr[i]);
-            tail = ans;
+            let gnode = new ListNode(g);
+            gnode.next = p.next;
+            p.next = gnode;
+            p = gnode.next;
         } else {
-            tail.next = new ListNode(arr[i]);
-            tail = tail.next;
+            break;
         }
     }
-    return ans;
+    //console.log(head)
+    
+    return head;
 };
