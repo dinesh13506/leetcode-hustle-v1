@@ -10,7 +10,6 @@
  * @return {ListNode}
  */
 var gcd = function(a, b) {
-  console.log(a, b)
   if (!b) {
     return a;
   }
