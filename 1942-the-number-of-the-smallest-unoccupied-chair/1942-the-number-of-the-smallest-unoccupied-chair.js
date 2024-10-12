@@ -40,13 +40,16 @@ var smallestChair = function(times, targetFriend) {
         }
         let chair = availableChairs.dequeue();
         times[i].push(chair);
+        if(times[i][2] == targetFriend) {
+            return chair;
+        }
         allocatedChairs.enqueue(times[i]);
     }
-    for(let i = 0; i < totalPersons; i++) {
-        if(times[i][2] == targetFriend) {
-            return times[i][3];
-        }
-    }
+    // for(let i = 0; i < totalPersons; i++) {
+    //     if(times[i][2] == targetFriend) {
+    //         return times[i][3];
+    //     }
+    // }
 
     //console.log(times);
     return 0;
