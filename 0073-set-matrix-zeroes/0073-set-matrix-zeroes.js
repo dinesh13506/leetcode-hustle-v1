@@ -6,6 +6,7 @@ var setZeroes = function(matrix) {
     
     const m = matrix.length;
     const n = matrix[0].length;
+    const value =  (Math.pow(2, 31) -1) + 1
     
     for(let i = 0; i < m; i++) {
         for(let j = 0; j < n; j++) {
@@ -13,14 +14,14 @@ var setZeroes = function(matrix) {
                 let c = 0;
                 while(c < n) {
                     if(matrix[i][c] != 0) {
-                        matrix[i][c] = null;
+                        matrix[i][c] = value;
                     }
                     c++;
                 }
                 let r = 0;
                 while( r < m) {
                     if(matrix[r][j] != 0) {
-                        matrix[r][j] = null;
+                        matrix[r][j] = value;
                     }
                     r++;
                 }
@@ -30,7 +31,7 @@ var setZeroes = function(matrix) {
     //console.log(matrix)
     for(let i = 0; i < m; i++) {
         for(let j = 0; j < n; j++) {
-            if(matrix[i][j] == null) matrix[i][j] = 0;
+            if(matrix[i][j] == value) matrix[i][j] = 0;
         }
     }
 };
