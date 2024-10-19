@@ -1,20 +1,20 @@
 class Solution {
-
     public char findKthBit(int n, int k) {
-        StringBuilder sequence = new StringBuilder("0");
-
-        // Generate sequence until we have enough elements or reach nth iteration
-        for (int i = 1; i < n && k > sequence.length(); ++i) {
-            sequence.append('1');
-
-            // Append the inverted and reversed part of the existing sequence
-            for (int j = sequence.length() - 2; j >= 0; --j) {
-                char invertedBit = (sequence.charAt(j) == '1') ? '0' : '1';
-                sequence.append(invertedBit);
+        StringBuilder result = new StringBuilder();
+        result.append('0');
+        for(int i = 1; i <= n ; i++) {
+            StringBuilder rev = new StringBuilder();
+            result.append('1');
+            for(int j = result.length() - 2; j >= 0; j--) {
+                char ch = result.charAt(j) == '0' ? '1' : '0';
+                result.append(ch);
             }
+               
+          
+            //System.out.println(result.toString());
         }
 
-        // Return the kth bit
-        return sequence.charAt(k - 1);
+        return result.charAt(k-1);
+
     }
 }
